@@ -1,0 +1,33 @@
+#app {
+  display: flex;
+}
+
+img {
+  border: 1px solid black;
+  width: 200px;
+  height: 200px;
+  margin: 5px;
+  /* position: relative;
+  top: 0px;
+  left: 0px; */
+}
+
+button {
+  display: none;
+}
+
+a {
+  position: relative;
+}
+
+.image-data {
+  z-index: 80;
+}
+
+.remove {
+  text-decoration: none;
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  z-index: 99;
+}
