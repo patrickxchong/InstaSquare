@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>InstaSquare</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/main.css">
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jimp.min.js"></script>
+  <script src="js/jszip.min.js"></script>
+  <script src="js/FileSaver.min.js"></script>
+</head>
+
+<body>
+  <input type="file" id="file" name="files[]" onchange="newFiles(this, showBtn)" multiple />
+  <button onclick="downloadZip()">Download Squared Images</button>
+  <br>
+  <br>
+  <div id="app"></div>
+  
+  <script>
+    var app = document.getElementById("app");
+    var zip = new JSZip();
+
+    // Add an top-level, arbitrary text file with contents
+    // zip.file("Hello.txt", "Hello World\n");
+
+    function downloadZip() {
+      // Generate the zip file asynchronously
+      zip.generateAsync({
+          type: "blob"
+        })
+        .then(function (content) {
+          // Force down of the Zip file
+          saveAs(content, "images.zip");
+        });
+    }
+    function showBtn() {
+      document.querySelector("button").style.display = "inline";
+    }
+
+    function newFiles(element, showBtn) {
+      for (var i = 0; i < element.files.length; ++i) {
+        readFileAndProcess(element.files[i]);
+      }
+
+      function readFileAndProcess(readfile) {
+        var reader = new FileReader();
+        reader.addEventListener("load", function () {
+          var worker = new Worker("js/worker.js");
+          worker.onmessage = function (e) {
+            var a = document.createElement("a");
+            var img = document.createElement("img");
+            img.setAttribute("src", e.data);
+            var squared_file = readfile.name.split(".")[0] + "_squared." + readfile.name.split(".")[1];
+            a.setAttribute("href", e.data);
+            a.setAttribute("download", squared_file)
+            a.appendChild(img);
+            app.appendChild(a);
+            // Add a file to the directory, in this case an image with data URI as contents
+            zip.file(squared_file, e.data.split('base64,')[1], {
+              base64: true
+            });
+          };
+          worker.postMessage(this.result);
+        });
+        reader.readAsArrayBuffer(readfile);
+        return showBtn();
+      }
+    }
+  </script>
+  <style>
+  </style>
+  <script>
+  </script>
+</body>
+
+</html>
