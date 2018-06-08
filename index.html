@@ -22,9 +22,6 @@
   <br>
   <div id="app"></div>
   <script>
-    var app = document.getElementById("app");
-
-
     function downloadZip() {
       var zip = new JSZip();
 
@@ -48,6 +45,8 @@
     }
 
     function newFiles(element) {
+      var app = document.getElementById("app");
+      
       for (var i = 0; i < element.files.length; ++i) {
         readFileAndProcess(element.files[i]);
       }
@@ -76,9 +75,6 @@
             removeBtn.classList.add("remove");
             removeBtn.innerHTML = "&times;";
             removeBtn.addEventListener("click", function () {
-              // console.log("this",this);
-              // console.log("grandparent",this.parentNode.parentNode);
-              // console.log("parent",this.parentNode);
               this.parentNode.parentNode.removeChild(this.parentNode);
             });
 
@@ -86,7 +82,6 @@
             img_wrapper.appendChild(img_link);
             img_wrapper.appendChild(removeBtn);
             app.appendChild(img_wrapper);
-
 
           };
           worker.postMessage(this.result);
