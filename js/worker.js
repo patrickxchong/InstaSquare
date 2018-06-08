@@ -5,7 +5,7 @@ importScripts("jimp.min.js");
 
 self.addEventListener("message", function (e) {
   Jimp.read(e.data).then(function (image) {
-    console.log(e);
+    // console.log(e);
     if (image.bitmap.width > image.bitmap.height) {
       image.contain(image.bitmap.width, image.bitmap.width)
         

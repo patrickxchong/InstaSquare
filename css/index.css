@@ -1,5 +1,7 @@
 #app {
   display: flex;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 img {
@@ -16,18 +18,25 @@ button {
   display: none;
 }
 
-a {
+.img_wrapper {
   position: relative;
 }
 
-.image-data {
-  z-index: 80;
-}
-
 .remove {
-  text-decoration: none;
   position: absolute;
   top: 7px;
   right: 7px;
+  padding: 2px 2px;
+  width: 16px;
+  text-align: center;
+  vertical-align: middle;
   z-index: 99;
+  border-radius: 100%;
+  background-color: lightgrey;
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.remove:hover {
+  opacity: 1;
 }

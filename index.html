@@ -16,17 +16,27 @@
 </head>
 
 <body>
-  <input type="file" id="file" name="files[]" onchange="newFiles(this, showBtn)" multiple />
+  <input type="file" id="file" name="files[]" onchange="newFiles(this)" multiple />
   <button onclick="downloadZip()">Download Squared Images</button>
   <br>
   <br>
   <div id="app"></div>
-  
   <script>
     var app = document.getElementById("app");
-    var zip = new JSZip();
+
 
     function downloadZip() {
+      var zip = new JSZip();
+
+      var links = document.querySelectorAll(".img_link");
+      for (var i = 0; i < links.length; ++i) {
+        // Add a file to the directory, in this case an image with data URI as contents
+        zip.file(links[i].download, links[i].href.split('base64,')[1], {
+          base64: true
+        });
+      }
+
+
       // Generate the zip file asynchronously
       zip.generateAsync({
           type: "blob"
@@ -37,53 +47,57 @@
         });
     }
 
-    function showBtn() {
-      document.querySelector("button").style.display = "inline";
-    }
-
-    function newFiles(element, showBtn) {
+    function newFiles(element) {
       for (var i = 0; i < element.files.length; ++i) {
         readFileAndProcess(element.files[i]);
       }
       showBtn();
-
+      
       function readFileAndProcess(readfile) {
         var reader = new FileReader();
         reader.addEventListener("load", function () {
           var worker = new Worker("js/worker.js");
           worker.onmessage = function (e) {
-            var removeBtn = document.createElement("a");
-            removeBtn.classList.add("remove");
-            removeBtn.innerHTML = "X";
-            removeBtn.addEventListener("onclick", function() {
-              removeBtn.parentElement.parentElement.removeChild(removeBtn.parentElement);
-              // instructions to remove image - get parent node and remove.
-            });
-            var a = document.createElement("a");
-            a.classList.add("image-link");
-            var img = document.createElement("img");
-            img.classList.add("image-data");
-            img.setAttribute("src", e.data);
             var squared_file = readfile.name.split(".")[0] + "_squared." + readfile.name.split(".")[1];
-            a.setAttribute("href", e.data);
-            a.setAttribute("download", squared_file)
-            a.appendChild(img);
-            a.appendChild(removeBtn);
-            app.appendChild(a);
-            // Add a file to the directory, in this case an image with data URI as contents
-            zip.file(squared_file, e.data.split('base64,')[1], {
-              base64: true
+
+            var img_wrapper = document.createElement("div");
+            img_wrapper.classList.add("img_wrapper");
+
+            var img_data = document.createElement("img");
+            img_data.classList.add("img_data");
+            img_data.setAttribute("src", e.data);
+
+            var img_link = document.createElement("a");
+            img_link.classList.add("img_link");
+            img_link.setAttribute("href", e.data);
+            img_link.setAttribute("download", squared_file)
+
+            var removeBtn = document.createElement("span");
+            removeBtn.classList.add("remove");
+            removeBtn.innerHTML = "&times;";
+            removeBtn.addEventListener("click", function () {
+              // console.log("this",this);
+              // console.log("grandparent",this.parentNode.parentNode);
+              // console.log("parent",this.parentNode);
+              this.parentNode.parentNode.removeChild(this.parentNode);
             });
+
+            img_link.appendChild(img_data);
+            img_wrapper.appendChild(img_link);
+            img_wrapper.appendChild(removeBtn);
+            app.appendChild(img_wrapper);
+
+
           };
           worker.postMessage(this.result);
         });
         reader.readAsArrayBuffer(readfile);
       }
+
+      function showBtn() {
+        document.querySelector("button").style.display = "inline";
+      }
     }
-  </script>
-  <style>
-  </style>
-  <script>
   </script>
 </body>
 
