@@ -8,8 +8,9 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" href="icon.png">
-  <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" type="text/css" href="css/reset.css">
+  <link rel="stylesheet" type="text/css" href="css/index.css">
+  <link rel="stylesheet" type="text/css" href="css/custom-upload.css" />
   <script src="js/jimp.min.js"></script>
   <script src="js/jszip.min.js"></script>
   <script src="js/FileSaver.min.js"></script>
@@ -23,10 +24,40 @@
   <p>Your one click solution to bulk squaring photos for Instagram!</p>
   <br>
   <br>
-
   <input type="file" id="file" name="files[]" onchange="newFiles(this)" multiple />
   <br>
-  <button onclick="downloadZip()">Download Squared Images</button>
+  <div id="download-wrapper">
+    <div>
+
+      <button class="button" onclick="downloadZip()">Download as Zip file</button>
+    </div>
+    <div id="login-box" class="hide">
+      <p>To upload to Drive, please login to your Google account.</p>
+      <button id="btnLogin" onclick="handleAuthClick()" class="button">Login</button>
+    </div>
+    <div id="drive-box" class="hide">
+      <div id="drive-menu">
+        <div id="button-upload" title="Upload to Google Drive" class="button-opt"></div>
+        <div id="button-addfolder" title="Upload to New Google Drive Folder" class="button-opt"></div>
+        <div class="user-item">
+          <a id="link-logout" class="logout-link button" onclick="handleSignoutClick()">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="float-box" id="float-box">
+    <div class="folder-form">
+      <div class="close-x">
+        <img id="imgClose" class="imgClose" src="css/images/button_close.png" alt="close" />
+      </div>
+      <h3 class="clear">Add New Folder</h3>
+      <div>
+        <input type="text" id="txtFolder" class="text-input" />
+      </div>
+      <button id="btnAddFolder" value="Save" class="button">Add</button>
+      <button id="btnClose" value="Close" class="button btnClose">Close</button>
+    </div>
+  </div>
   <br>
   <br>
   <div id="app"></div>
@@ -53,15 +84,20 @@
         });
     }
 
+    function showBtn() {
+      document.querySelector("#download-wrapper").style.display = "inline";
+    }
+
     function newFiles(element) {
+      document.querySelector("#download-wrapper").style.display = "none";
+
       var app = document.getElementById("app");
-      
+
       for (var i = 0; i < element.files.length; ++i) {
-        readFileAndProcess(element.files[i]);
+        readFileAndProcess(element.files[i], i, element.files.length);
       }
-      showBtn();
-      
-      function readFileAndProcess(readfile) {
+
+      function readFileAndProcess(readfile, counter, length) {
         var reader = new FileReader();
         reader.addEventListener("load", function () {
           var worker = new Worker("js/worker.js");
@@ -92,17 +128,27 @@
             img_wrapper.appendChild(removeBtn);
             app.appendChild(img_wrapper);
 
+            //best shot at delaying showing button so far
+            if ((counter + 1) === length) {
+              setTimeout(showBtn(), 3000);
+            }
+
+            // console.log(e.data);
+
           };
           worker.postMessage(this.result);
         });
         reader.readAsArrayBuffer(readfile);
       }
 
-      function showBtn() {
-        document.querySelector("button").style.display = "inline";
-      }
+
     }
   </script>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/custom-upload.js"></script>
+  <script async defer src="js/google-api.js" onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()">
+  </script>
+  <script src="js/upload.js"></script>
 </body>
 
 </html>

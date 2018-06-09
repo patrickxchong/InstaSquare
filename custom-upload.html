@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Custom Upload</title>
+  <link href="custom-upload.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <div id="wrapper">
+    <div id="login-box" class="hide">
+      <p>Please login on your google account.</p>
+      <button id="btnLogin" onclick="handleAuthClick()" class="button">Login</button>
+    </div>
+    <div id="drive-box" class="hide">
+      <div id="drive-menu">
+        <div id="button-upload" title="Upload to Google Drive" class="button-opt"></div>
+        <div id="button-addfolder" title="Add Folder" class="button-opt"></div>
+        <div class="user-item">
+          <a id="link-logout" class="logout-link button" onclick="handleSignoutClick()">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="float-box" id="float-box">
+    <div class="folder-form">
+      <div class="close-x">
+        <img id="imgClose" class="imgClose" src="images/button_close.png" alt="close" />
+      </div>
+      <h3 class="clear">Add New Folder</h3>
+      <div>
+        <input type="text" id="txtFolder" class="text-input" />
+      </div>
+      <button id="btnAddFolder" value="Save" class="button">Add</button>
+      <button id="btnClose" value="Close" class="button btnClose">Close</button>
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="custom-upload.js"></script>
+  <script async defer src="https://apis.google.com/js/api.js" onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()">
+  </script>
+  <script src="upload.js"></script>
+</body>
+
+</html>
