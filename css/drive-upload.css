@@ -1,15 +1,10 @@
-/*************** Google Login Box ***************/
-.logout-link {
-  cursor: pointer;
-}
-
-/*************** END Google Login Box ***************/
-
-/*************** Google Drive Box ***************/
-
 #drive-menu {
   display: flex;
   align-items: center;
+}
+
+#drive-menu > * {
+  margin-right: 5px;
 }
 
 #button-addfolder,
@@ -17,7 +12,7 @@
   width: 24px;
   height: 24px;
   cursor: pointer;
-  margin-right: 5px;
+  
   border: Solid 1px #fae8e4;
   border-radius: 5px;
 }
