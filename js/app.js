@@ -60,8 +60,10 @@ function newFiles(element) {
         });
 
         img_link.appendChild(img_data);
-        img_wrapper.appendChild(img_link);
-        img_wrapper.appendChild(removeBtn);
+        var div = document.createElement("div");
+        div.appendChild(img_link);
+        div.appendChild(removeBtn);
+        img_wrapper.appendChild(div);
         app.appendChild(img_wrapper);
 
         //best shot at delaying showing button so far

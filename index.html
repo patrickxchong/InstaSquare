@@ -10,61 +10,115 @@
   <link rel="apple-touch-icon" href="icon.png">
   <link rel="stylesheet" type="text/css" href="css/reset.css">
   <link rel="stylesheet" type="text/css" href="css/index.css">
+  <link rel="stylesheet" type="text/css" href="css/prologue.css">
   <link rel="stylesheet" type="text/css" href="css/drive-upload.css" />
 </head>
 
 <body>
-  <br>
-  <h1>InstaSquare</h1>
-  <br>
-  <br>
-  <p>Your one click solution to bulk squaring photos for Instagram!</p>
-  <br>
-  <br>
-  <div>
-
-    <input type="file" id="file" name="files[]" onchange="newFiles(this)" multiple />
-    <button class="button" onclick="document.getElementById('file').click(); return false;">Upload file</button>
-    <button class="button" >Help</button>
-  </div>
-  <br>
-  <div id="download-wrapper">
-    <div>
-      <button class="button" onclick="downloadZip()">Download as Zip file</button>
-    </div>
-    <div id="login-box" class="hide">
-      <p>To upload to Drive, please login to your Google account.</p>
-      <button class="button" onclick="handleAuthClick()">Login</button>
-    </div>
-    <div id="drive-box" class="hide">
-      <div id="drive-menu">
-
-        <div id="gmail"></div>
-        <div id="button-upload" title="Upload to Google Drive"></div>
-        <div id="button-addfolder" title="Upload to New Google Drive Folder"></div>
-        <button class="button" onclick="handleAuthClick()">Switch Accounts</button>
-        <button class="button" onclick="handleSignoutClick()">Logout</button>
+  <div id="wrapper">
+    <div id="left-column">
+      <input type="file" id="file" name="files[]" onchange="newFiles(this)" multiple />
+      <div class="top">
+        <!-- Logo -->
+        <div id="logo">
+          <h1 id="title">InstaSquare</h1>
+          <p>An app to bulk square photos for Instagram</p>
+          <div id="download-wrapper">
+            <div id="login-box" class="hide">
+              <p>To upload to Drive, please login to your Google account.
+                <span id="login" onclick="handleAuthClick()">(Log In)</span>
+              </p>
+              <!-- <button class="button" onclick="handleAuthClick()">Login</button> -->
+            </div>
+            <div id="drive-box" class="hide">
+              <p id="gmail">Logged in as: </p>
+              <div style="display: flex; margin-top: 0;">
+                <p id="switchAcc" onclick="handleAuthClick()">(Switch Account)</p>
+                <p id="logout" onclick="handleSignoutClick()">(Log Out)</p>
+              </div>
+              <!-- <div id="button-upload" title="Upload to Google Drive"></div> -->
+              <!-- <div id="button-addfolder" title="Upload to New Google Drive Folder"></div> -->
+              <!-- <button class="button" onclick="handleSignoutClick()">Logout</button> -->
+            </div>
+          </div>
+        </div>
+        <!-- Nav -->
+        <nav id="nav">
+          <ul>
+            <li class="active icon fa-th" onclick="document.getElementById('file').click(); return false;">
+              Upload Images
+            </li>
+            <li class="icon fa-file-archive-o" onclick="downloadZip()">Download as Zip
+            </li>
+            <li id="button-upload" class="icon fa-hdd-o">
+              Upload to Google Drive
+            </li>
+            <li id="button-addfolder" class="icon fa-hdd-o">
+              Upload to New GDrive Folder
+            </li>
+            <li class="icon fa-envelope">
+              Contact
+            </li>
+          </ul>
+        </nav>
+        <div class="float-box" id="float-box">
+          <div class="folder-form">
+            <div class="close-x">
+              <img id="imgClose" class="imgClose" src="css/images/button_close.png" alt="close" />
+            </div>
+            <h3 class="clear">Upload to New Google Drive Folder (If left blank, a folder named InstaSquare will be created)</h3>
+            <div>
+              <input type="text" id="txtFolder" class="text-input" />
+            </div>
+            <button id="btnAddFolder" value="Save" class="button">Add</button>
+            <button id="btnClose" value="Close" class="button btnClose">Close</button>
+          </div>
+        </div>
+      </div>
+      <div class="bottom">
+        <!-- Social Icons -->
+        <ul class="icons">
+          <li>
+            <a href="#" class="icon fa-twitter">
+              <span class="label">Twitter</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="icon fa-facebook">
+              <span class="label">Facebook</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="icon fa-github">
+              <span class="label">Github</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="icon fa-dribbble">
+              <span class="label">Dribbble</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="icon fa-envelope">
+              <span class="label">Email</span>
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
-  </div>
-  <div class="float-box" id="float-box">
-    <div class="folder-form">
-      <div class="close-x">
-        <img id="imgClose" class="imgClose" src="css/images/button_close.png" alt="close" />
-      </div>
-      <h3 class="clear">Upload to New Google Drive Folder (If left blank, a folder named InstaSquare will be created)</h3>
+    <div id="left-column-placeholder"></div>
+    <div id="right-column">
       <div>
-        <input type="text" id="txtFolder" class="text-input" />
+        <div id="app">
+        </div>
       </div>
-      <button id="btnAddFolder" value="Save" class="button">Add</button>
-      <button id="btnClose" value="Close" class="button btnClose">Close</button>
+      <div id="contact">
+        pcjh@umich.edu
+      </div>
+      <div id="error-message" class="flash hidden"></div>
+      <div id="status-message" class="flash hidden"></div>
     </div>
   </div>
-  <br>
-  <br>
-  <div id="app"></div>
-  <div id="error-message" class="flash hidden"></div>
-  <div id="status-message" class="flash hidden"></div>
   <script src="js/app.js"></script>
   <script src="js/jimp.min.js"></script>
   <script src="js/jszip.min.js"></script>

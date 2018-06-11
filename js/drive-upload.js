@@ -35,12 +35,11 @@ function initClient() {
 		clientId: CLIENT_ID,
 		scope: SCOPES.join(' ')
 	}).then(function () {
-
+		
 		// Listen for sign-in state changes.
 		gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
 		// Handle the initial sign-in state.
 		updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-
 	});
 }
 
@@ -48,10 +47,10 @@ function initClient() {
 //check the return authentication of the login is successful, we display the drive box and hide the login box.
 function updateSigninStatus(isSignedIn) {
 	if (isSignedIn) {
+		gapi.client.load('drive', 'v2', updateEmail);
 		$("#drive-box").show();
 		$("#drive-box").css("display", "inline-block");
 		$("#login-box").hide();
-		gapi.client.load('drive', 'v2', updateEmail);
 	} else {
 		$("#login-box").show();
 		$("#drive-box").hide();

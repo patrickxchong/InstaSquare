@@ -3,26 +3,15 @@
   align-items: center;
 }
 
-#drive-menu > * {
+#drive-menu>* {
   margin-right: 5px;
 }
 
-#button-addfolder,
-#button-upload {
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
-  
-  border: Solid 1px #fae8e4;
-  border-radius: 5px;
-}
-
-#button-upload {
-  background: url(images/button_upload.png) no-repeat;
-}
-
-#button-addfolder {
-  background: url(images/button_addfolder.png) no-repeat;
+#drive-box,
+#login-box {
+  font-size: 0.8rem;
+  text-align: left;
+  width: 100%;
 }
 
 /*************** END Google Drive Box ***************/
@@ -34,8 +23,8 @@
   -webkit-box-shadow: 7px 7px 5px rgba(50, 50, 50, 0.75);
   -moz-box-shadow: 7px 7px 5px rgba(50, 50, 50, 0.75);
   box-shadow: 7px 7px 5px rgba(50, 50, 50, 0.75);
-  width: 400px;
-  padding: 7px 15px;
+  width: 500px;
+  padding: 7px 10px;
   border: solid 1px #ccc;
   position: fixed;
   left: 50%;
@@ -44,6 +33,11 @@
   z-index: 1000000;
   background-color: #fff;
   display: none;
+}
+
+.float-box h3 {
+  color: black;
+  font-size: 0.7rem;
 }
 
 .close-x {
@@ -56,7 +50,7 @@
   width: 90%;
   padding: 5px;
   border-radius: 5px;
-  margin-bottom: 10px;
+  margin: 10px 0px;
 }
 
 /************* END FLOATING BOX *********************/
