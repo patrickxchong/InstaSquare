@@ -1,4 +1,4 @@
-@import url("font-awesome.min.css");
+/* @import url("font-awesome.min.css"); */
 :root {
   font-size: 20pt;
 }
@@ -61,7 +61,7 @@ h1 {
 
 #app {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(15%, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(12vw, 1fr));
   grid-gap: 0.8rem;
 }
 

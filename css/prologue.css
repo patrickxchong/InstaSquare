@@ -10,11 +10,12 @@ body {
 
 #right-column {
   width: 100%;
+  padding: 40px;
 }
 
 #right-column > div:first-child {
   min-height: 100vh;
-  padding: 1rem;
+  padding-bottom: 40px;
 }
 
 #left-column {

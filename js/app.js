@@ -56,7 +56,7 @@ function newFiles(element) {
         removeBtn.classList.add("remove");
         removeBtn.innerHTML = "&times;";
         removeBtn.addEventListener("click", function () {
-          this.parentNode.parentNode.removeChild(this.parentNode);
+          this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
         });
 
         img_link.appendChild(img_data);

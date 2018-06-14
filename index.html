@@ -12,6 +12,7 @@
   <link rel="stylesheet" type="text/css" href="css/index.css">
   <link rel="stylesheet" type="text/css" href="css/prologue.css">
   <link rel="stylesheet" type="text/css" href="css/drive-upload.css" />
+  <link rel="stylesheet" type="text/css" href="css/fontawesome-all.min.css">
 </head>
 
 <body>
@@ -45,18 +46,22 @@
         <!-- Nav -->
         <nav id="nav">
           <ul>
-            <li class="active icon fa-th" onclick="document.getElementById('file').click(); return false;">
-              Upload Images
+            <li class="active icon" onclick="document.getElementById('file').click(); return false;">
+              <i class="fas fa-th"></i>Upload Images
             </li>
-            <li class="icon fa-file-archive-o" onclick="downloadZip()">Download as Zip
+            <li class="icon" onclick="downloadZip()">
+                <i class="far fa-file-archive"></i>Download as Zip
             </li>
-            <li id="button-upload" class="icon fa-hdd-o">
+            <li id="button-upload" class="icon">
+                <i class="fab fa-google-drive"></i>
               Upload to Google Drive
             </li>
-            <li id="button-addfolder" class="icon fa-hdd-o">
+            <li id="button-addfolder" class="icon ">
+                <i class="far fa-folder-open"></i>
               Upload to New GDrive Folder
             </li>
-            <li class="icon fa-envelope">
+            <li class="icon">
+                <i class="fas fa-envelope"></i>
               Contact
             </li>
           </ul>
@@ -113,7 +118,7 @@
         </div>
       </div>
       <div id="contact">
-        pcjh@umich.edu
+        Created by: Patrick Chong
       </div>
       <div id="error-message" class="flash hidden"></div>
       <div id="status-message" class="flash hidden"></div>
