@@ -7,17 +7,22 @@ self.addEventListener("message", function (e) {
   Jimp.read(e.data).then(function (image) {
     // console.log(e);
     if (image.bitmap.width > image.bitmap.height) {
-      image.contain(image.bitmap.width, image.bitmap.width)
+      image.contain(image.bitmap.width, image.bitmap.width).quality(100)
+      .background(0xFFFFFFFF)
+      .getBase64(Jimp.AUTO, function (err, src) {
+        if (err) throw err;
+        self.postMessage(src);
+        self.close();
+      })
         
     } else {
-      image.contain(image.bitmap.height, image.bitmap.height)
+      image.contain(image.bitmap.height, image.bitmap.height).quality(100)
+      .background(0xFFFFFFFF)
+      .getBase64(Jimp.AUTO, function (err, src) {
+        if (err) throw err;
+        self.postMessage(src);
+        self.close();
+      })
     }
-    image.quality(100)
-    .background(0xFFFFFFFF)
-    .getBase64(Jimp.AUTO, function (err, src) {
-      if (err) throw err;
-      self.postMessage(src);
-      self.close();
-    })
   })
 })

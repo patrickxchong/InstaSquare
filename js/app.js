@@ -25,7 +25,8 @@ function showBtn() {
 }
 
 function newFiles(element) {
-  document.querySelector("#download-wrapper").style.display = "none";
+  document.getElementById("img_placeholder").style.display = "none";;
+  // document.querySelector("#download-wrapper").style.display = "none";
 
   var app = document.getElementById("app");
 
@@ -57,6 +58,9 @@ function newFiles(element) {
         removeBtn.innerHTML = "&times;";
         removeBtn.addEventListener("click", function () {
           this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
+          if (document.querySelectorAll(".img_link").length == 0) {
+            document.getElementById("img_placeholder").style.display = "grid";
+          }
         });
 
         img_link.appendChild(img_data);
@@ -66,12 +70,11 @@ function newFiles(element) {
         img_wrapper.appendChild(div);
         app.appendChild(img_wrapper);
 
-        //best shot at delaying showing button so far
-        if ((counter + 1) === length) {
-          setTimeout(showBtn(), 3000);
-        }
+        // //best shot at delaying showing button so far
+        // if ((counter + 1) === length) {
+        //   setTimeout(showBtn(), 3000);
+        // }
 
-        // console.log(e.data);
 
       };
       worker.postMessage(this.result);
