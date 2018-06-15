@@ -20,13 +20,11 @@ function downloadZip() {
     });
 }
 
-function showBtn() {
-  document.querySelector("#download-wrapper").style.display = "inline";
-}
-
 function newFiles(element) {
-  document.getElementById("img_placeholder").style.display = "none";;
-  // document.querySelector("#download-wrapper").style.display = "none";
+  document.querySelector("#img_placeholder").style.display = "none";
+  document.querySelector("#download-options").style.display = "none";
+  showLoading();
+	showStatus("Uploading Images...");
 
   var app = document.getElementById("app");
 
@@ -36,21 +34,33 @@ function newFiles(element) {
 
   function readFileAndProcess(readfile, counter, length) {
     var reader = new FileReader();
-    reader.addEventListener("load", function () {
-      var worker = new Worker("js/worker.js");
-      worker.onmessage = function (e) {
-        var squared_file = readfile.name.split(".")[0] + "_squared." + readfile.name.split(".")[1];
+    reader.file = readfile;
+
+    reader.onloadstart = function (progressEvent) {
+      // var arrayBuffer = reader.result;
+      console.log('readStart', progressEvent);
+    }
+
+    reader.onloadend = function (progressEvent) {
+      console.log('readEnd', progressEvent, this);
+      var fileReader = this;
+      var fileContent = fileReader.result;
+      var fileName = fileReader.file.name;
+      console.log('readEnd:', fileName, fileContent);
+
+      function addImgToPage(image, fileName) {
+        var squared_file = fileName.split(".")[0] + "_squared." + fileName.split(".")[1];
 
         var img_wrapper = document.createElement("div");
         img_wrapper.classList.add("img_wrapper");
 
         var img_data = document.createElement("img");
         img_data.classList.add("img_data");
-        img_data.setAttribute("src", e.data);
+        img_data.setAttribute("src", image);
 
         var img_link = document.createElement("a");
         img_link.classList.add("img_link");
-        img_link.setAttribute("href", e.data);
+        img_link.setAttribute("href", image);
         img_link.setAttribute("download", squared_file)
 
         var removeBtn = document.createElement("span");
@@ -69,18 +79,68 @@ function newFiles(element) {
         div.appendChild(removeBtn);
         img_wrapper.appendChild(div);
         app.appendChild(img_wrapper);
+      }
 
-        // //best shot at delaying showing button so far
-        // if ((counter + 1) === length) {
-        //   setTimeout(showBtn(), 3000);
-        // }
+      Jimp.read(fileContent).then(function (image) {
+        if (image.bitmap.width > image.bitmap.height) {
+          image.contain(image.bitmap.width, image.bitmap.width).quality(100)
+            .background(0xFFFFFFFF)
+            .getBase64(Jimp.AUTO, function (err, src) {
+              if (err) throw err;
+              addImgToPage(src, fileName);
+              if ((counter + 1) === length) {
+                document.querySelector("#download-options").style.display = "block";
+                hideLoading();
+                hideStatus();
+              }
+            })
 
+        } else {
+          image.contain(image.bitmap.height, image.bitmap.height).quality(100)
+            .background(0xFFFFFFFF)
+            .getBase64(Jimp.AUTO, function (err, src) {
+              if (err) throw err;
+              addImgToPage(src, fileName);
+              if ((counter + 1) === length) {
+                document.querySelector("#download-options").style.display = "block";
+                hideLoading();
+                hideStatus();
+              }
+            })
+        }
+      })
+    }
 
-      };
-      worker.postMessage(this.result);
-    });
+    reader.onprogress = function (progressEvent) {
+      console.log('readProgress', progressEvent);
+      if (progressEvent.lengthComputable) {
+        var percentage = Math.round((event.loaded * 100) / event.total);
+        console.log('readProgress: Loaded : ' + percentage + '%');
+      }
+    }
+
+    reader.onerror = function (progressEvent) {
+      console.log('readError', progressEvent);
+      switch (progressEvent.target.error.code) {
+        case progressEvent.target.error.NOT_FOUND_ERR:
+          alert('File not found!');
+          break;
+        case progressEvent.target.error.NOT_READABLE_ERR:
+          alert('File not readable!');
+          break;
+        case progressEvent.target.error.ABORT_ERR:
+          break;
+        default:
+          alert('Unknow Read error.');
+      }
+    }
+
     reader.readAsArrayBuffer(readfile);
+
   }
+
+
+
 
 
 }

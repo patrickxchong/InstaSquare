@@ -133,13 +133,13 @@ body {
   transition: none;
 }
 
-#nav ul li.active {
+#nav ul li:hover {
   background: rgba(0, 0, 0, 0.15);
   box-shadow: inset 0 0 0.25em 0 rgba(0, 0, 0, 0.125);
   color: #fff;
 }
 
-#nav ul li.active span:before {
+#nav ul li:hover span:before {
   color: white;
 }
 

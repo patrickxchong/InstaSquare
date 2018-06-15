@@ -84,9 +84,10 @@ function handleSignoutClick(event) {
 /******************** PAGE LOAD ********************/
 $("#button-upload").click(function () {
 	showLoading();
-	showStatus("Uploading Images...");
+	showStatus("Uploading Images To Drive...");
 	uploadPictures("root");
 });
+
 
 function uploadPictures(folderID) {
 	var links = document.querySelectorAll(".img_link");

@@ -29,7 +29,6 @@
               <p>To upload to Drive, please login to your Google account.
                 <span id="login" onclick="handleAuthClick()">(Log In)</span>
               </p>
-              <!-- <button class="button" onclick="handleAuthClick()">Login</button> -->
             </div>
             <div id="drive-box" class="hide">
               <p id="gmail">Logged in as: </p>
@@ -37,9 +36,6 @@
                 <p id="switchAcc" onclick="handleAuthClick()">(Switch Account)</p>
                 <p id="logout" onclick="handleSignoutClick()">(Log Out)</p>
               </div>
-              <!-- <div id="button-upload" title="Upload to Google Drive"></div> -->
-              <!-- <div id="button-addfolder" title="Upload to New Google Drive Folder"></div> -->
-              <!-- <button class="button" onclick="handleSignoutClick()">Logout</button> -->
             </div>
           </div>
         </div>
@@ -49,19 +45,21 @@
             <li class="active icon" onclick="document.getElementById('file').click(); return false;">
               <i class="fas fa-th"></i>Upload Images
             </li>
-            <li class="icon" onclick="downloadZip()">
+            <div id="download-options">
+              <li class="icon" onclick="downloadZip()">
                 <i class="far fa-file-archive"></i>Download as Zip
-            </li>
-            <li id="button-upload" class="icon">
+              </li>
+              <li id="button-upload" class="icon">
                 <i class="fab fa-google-drive"></i>
-              Upload to Google Drive
-            </li>
-            <li id="button-addfolder" class="icon ">
+                Upload to Google Drive
+              </li>
+              <li id="button-addfolder" class="icon ">
                 <i class="far fa-folder-open"></i>
-              Upload to New GDrive Folder
-            </li>
+                Upload to New GDrive Folder
+              </li>
+            </div>
             <li class="icon">
-                <i class="fas fa-envelope"></i>
+              <i class="fas fa-envelope"></i>
               Contact
             </li>
           </ul>
@@ -115,7 +113,11 @@
     <div id="right-column">
       <div>
         <div id="app">
-          <div id="img_placeholder" class="img_wrapper"> <div>Pictures <br> Appear <br> Here!</div></div>
+          <div id="img_placeholder" class="img_wrapper">
+            <div>Pictures
+              <br> Appear
+              <br> Here!</div>
+          </div>
         </div>
       </div>
       <div id="contact">
@@ -125,6 +127,9 @@
       <div id="status-message" class="flash hidden"></div>
     </div>
   </div>
+  <script>
+    document.querySelector("#download-options").style.display = "none";
+  </script>
   <script src="js/app.js"></script>
   <script src="js/jimp.min.js"></script>
   <script src="js/jszip.min.js"></script>
