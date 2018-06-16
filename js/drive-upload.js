@@ -49,7 +49,7 @@ function updateSigninStatus(isSignedIn) {
 	if (isSignedIn) {
 		gapi.client.load('drive', 'v2', updateEmail);
 		$("#drive-box").show();
-		$("#drive-box").css("display", "inline-block");
+		// $("#drive-box").css("display", "inline-block");
 		$("#login-box").hide();
 	} else {
 		$("#login-box").show();

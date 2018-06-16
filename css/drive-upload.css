@@ -1,3 +1,7 @@
+#download-wrapper {
+  height: 60px;
+}
+
 #drive-menu {
   display: flex;
   align-items: center;
