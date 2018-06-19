@@ -10,7 +10,6 @@ otherwise you should get an error message saying the url you try to load does no
 /******************** GLOBAL VARIABLES ********************/
 var SCOPES = ['https://www.googleapis.com/auth/drive.file', 'profile'];
 var CLIENT_ID = '440020782887-1rsqas8u0rkldf67hluinf08rg2m3f3a.apps.googleusercontent.com';
-var API_KEY = 'AIzaSyDGuCafsO0QzpYuSJzsm-tly1Lsc2WxGKQ';
 var FOLDER_NAME = "";
 var FOLDER_ID = "root";
 var FOLDER_PERMISSION = true;
@@ -30,7 +29,6 @@ function handleClientLoad() {
 //authorize apps
 function initClient() {
 	gapi.client.init({
-		//apiKey: API_KEY, //THIS IS OPTIONAL AND WE DONT ACTUALLY NEED THIS, BUT I INCLUDE THIS AS EXAMPLE
 		clientId: CLIENT_ID,
 		scope: SCOPES.join(' ')
 	}).then(function () {
