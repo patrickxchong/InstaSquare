@@ -1,5 +1,8 @@
+/*************** Google Drive Box ***************/
+
 #download-wrapper {
   height: 60px;
+  margin-top: 10px;
 }
 
 #drive-menu {
@@ -89,7 +92,7 @@
   padding: 5px;
   position: absolute;
   right: 10px;
-  bottom: 10px;
+  top: 10px;
   z-index: 9999999999;
 }
 
@@ -101,7 +104,7 @@
   padding: 10px;
   position: absolute;
   left: 10px;
-  bottom: 10px;
+  top: 10px;
   z-index: 9999999999;
   max-width: 400px;
   border-radius: 5px;
@@ -162,57 +165,6 @@
 
 .hide {
   display: none;
-}
-
-.flash {
-  -webkit-animation-name: flash;
-  -webkit-animation-duration: 1s;
-  -webkit-animation-timing-function: linear;
-  -webkit-animation-iteration-count: infinite;
-  -moz-animation-name: flash;
-  -moz-animation-duration: 1s;
-  -moz-animation-timing-function: linear;
-  -moz-animation-iteration-count: infinite;
-  animation-name: flash;
-  animation-duration: 1s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-
-@-moz-keyframes flash {
-  0% {
-    opacity: 1.0;
-  }
-  50% {
-    opacity: 0.5;
-  }
-  100% {
-    opacity: 1.0;
-  }
-}
-
-@-webkit-keyframes flash {
-  0% {
-    opacity: 1.0;
-  }
-  50% {
-    opacity: 0.5;
-  }
-  100% {
-    opacity: 1.0;
-  }
-}
-
-@keyframes flash {
-  0% {
-    opacity: 1.0;
-  }
-  50% {
-    opacity: 0.5;
-  }
-  100% {
-    opacity: 1.0;
-  }
 }
 
 /***************** END MISC ***********************
