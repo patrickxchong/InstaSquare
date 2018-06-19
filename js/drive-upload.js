@@ -1,5 +1,4 @@
 /*****
-http://bytutorial.com/tutorials/google-api/introduction-to-google-drive-api-using-javascript
 Bytutorial.com - online community to share articles for web and mobile programming and designers.
 Author: Andy Suwandy
 
@@ -9,7 +8,7 @@ otherwise you should get an error message saying the url you try to load does no
 ****/
 
 /******************** GLOBAL VARIABLES ********************/
-var SCOPES = ['https://www.googleapis.com/auth/drive', 'profile'];
+var SCOPES = ['https://www.googleapis.com/auth/drive.file', 'profile'];
 var CLIENT_ID = '440020782887-1rsqas8u0rkldf67hluinf08rg2m3f3a.apps.googleusercontent.com';
 var API_KEY = 'AIzaSyDGuCafsO0QzpYuSJzsm-tly1Lsc2WxGKQ';
 var FOLDER_NAME = "";
