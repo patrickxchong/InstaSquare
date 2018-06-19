@@ -45,7 +45,11 @@ h1 {
 }
 
 #right-column > div:first-child {
+<<<<<<< HEAD
   min-height:84vh;
+=======
+  min-height:85vh;
+>>>>>>> b55df81f9291f20cd428a54bb06051f72dbb382b
   padding-bottom: 40px;
 }
 

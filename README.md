@@ -6,8 +6,9 @@ This web app was created because my friend Claire told me about their difficulti
 
 However, Claire wanted to upload a mix of both portait + landscape pictures and didn't want the pictures to be cropped, they wanted white borders to be added to the shorter side of the picture to square it. Other image squaring products exist in the market but they only do photos individually, causing additional work per photo. When I heard about the problem from Claire, I set out to build the bulk image squarer prototype as a web app to make it easier for them to access and use it.
 
-## Built With
+## Installation and Usage
 
+<<<<<<< HEAD
 This project would not have been possible without the help of the following Javascript libraries:
 * [Jimp](https://github.com/oliver-moran/jimp) - To square the images
 * [JSZip](https://stuk.github.io/jszip/) - To store squared images for download
