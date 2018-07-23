@@ -49,39 +49,41 @@
               <i class="fas fa-th"></i>Upload Images
             </li>
             <div id="download-options">
-              <li class="icon" onclick="downloadZip()">
+              <li id="download-zip" class="icon" onclick="downloadZip()">
                 <i class="far fa-file-archive"></i>Download as Zip
               </li>
-              <li id="button-upload" class="icon">
+              <li id="gdrive-upload" class="icon">
                 <i class="fab fa-google-drive"></i>
                 Upload to Google Drive
-              </li>
-              <li id="button-addfolder" class="icon ">
-                <i class="far fa-folder-open"></i>
-                Upload to New GDrive Folder
               </li>
             </div>
             <a href="https://mail.google.com/mail/?view=cm&fs=1&to=pcjh@umich.edu&su=[InstaSquare] &body=Hello Patrick!" target="blank">
             <li class="icon">
                 <i class="fas fa-envelope"></i>
-              
               Contact
             </li></a>
           </ul>
         </nav>
         <div class="float-box" id="float-box">
-          <div class="folder-form">
-            <div class="close-x">
-              <img id="imgClose" class="imgClose" src="css/images/button_close.png" alt="close" />
-            </div>
-            <h3 class="clear">Upload to New Google Drive Folder (If left blank, a folder named InstaSquare will be created)</h3>
-            <div>
-              <input type="text" id="txtFolder" class="text-input" />
-            </div>
-            <button id="btnAddFolder" value="Save" class="button">Add</button>
-            <button id="btnClose" value="Close" class="button btnClose">Close</button>
+          <h3>Upload to: </h3>
+            <li id="root-folder" class="icon">
+                <i class="far fa-folder-open"></i>
+                <p>Home Folder</p>
+            </li>
+            <li id="insta-folder" class="icon">
+                <i class="far fa-folder-open"></i>
+                <p>"InstaSquare" Folder</p>
+            </li>
+            <li id="custom-folder" class="icon">
+                <i class="far fa-folder-open"></i>
+                <p>Custom Folder</p>
+                <input type="text" id="txtFolder" class="text-input" />
+            </li>
+
+            <!-- <button id="btnAddFolder" value="Save" class="button">Add</button> -->
+
+            <button id="btnClose" value="Close" class="button btnClose">Cancel</button>
           </div>
-        </div>
       </div>
       <div class="bottom">
         <!-- Social Icons -->
@@ -126,7 +128,7 @@
         </div>
       </div>
       <div id="contact">
-        <p>Created with utmost care and diligence by: Patrick Chong Jin Hua</p>
+        <p>Created by: Patrick Chong Jin Hua</p>
         <p>If you have any suggestions for improvement, please direct them to pcjh@umich.edu. :)</p>
       </div>
       <div id="error-message" class="hidden"></div>
@@ -134,7 +136,7 @@
     </div>
   </div>
   <script>
-    document.querySelector("#download-options").style.display = "none";
+    // document.querySelector("#download-options").style.display = "none";
   </script>
   <script src="js/jquery.min.js"></script>
   <script async defer src="js/google-api.js" onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>

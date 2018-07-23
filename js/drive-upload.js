@@ -79,13 +79,6 @@ function handleSignoutClick(event) {
 
 
 /******************** PAGE LOAD ********************/
-$("#button-upload").click(function () {
-	showLoading();
-	showStatus("Uploading Images To Drive...");
-	uploadPictures("root");
-});
-
-
 function uploadPictures(folderID) {
 	var links = document.querySelectorAll(".img_link");
 	for (var i = 0; i < links.length; ++i) {
@@ -153,24 +146,33 @@ function uploadPictures(folderID) {
 	}
 }
 
-$("#button-addfolder").click(function () {
-	$("#transparent-wrapper").show();
-	$("#float-box").show();
+
+$("#gdrive-upload").click(function () {
+	// $("#float-box").show();
+	document.getElementById("float-box").classList.add("grid");
 	$("#txtFolder").val("");
 });
 
-$("#btnAddFolder").click(function () {
+$("#root-folder").click(function () {
 	showLoading();
+	showStatus("Uploading Images To Drive...");
+	uploadPictures("root");
+});
+
+$("#insta-folder").click(function () {
+	showLoading();
+	var inputCheck = () => checkFolderExistence("InstaSquare");
 	gapi.client.load('drive', 'v2', inputCheck);
 });
 
-function inputCheck() {
-	if ($("#txtFolder").val() == "") {
-		checkFolderExistence("InstaSquare");
-	} else {
-		checkFolderExistence($("#txtFolder").val());
+$("#custom-folder").click(function () {
+	if (checkFolderExistence($("#txtFolder").val() == "")) {
+		return;
 	}
-}
+	showLoading();
+	var inputCheck = () => checkFolderExistence($("#txtFolder").val());
+	gapi.client.load('drive', 'v2', inputCheck);
+});
 
 function checkFolderExistence(folderName) {
 	var request = gapi.client.drive.files.list({
@@ -183,8 +185,8 @@ function checkFolderExistence(folderName) {
 			var notFound = true;
 			for (var i = 0; i < DRIVE_FILES.length; i++) {
 				if (DRIVE_FILES[i].title === folderName) {
-					$("#transparent-wrapper").hide();
-					$("#float-box").hide();
+					// $("#float-box").hide();
+					document.getElementById("float-box").classList.remove("grid");
 					uploadPictures(DRIVE_FILES[i].id);
 					notFound = false;
 				}
@@ -193,13 +195,13 @@ function checkFolderExistence(folderName) {
 
 		} else {
 			showErrorMessage("Error: " + resp.error.message);
-		}
+		}	
 	});
 }
 
 function makeFolder(folderName) {
 	console.log("makeFolder");
-	$("#transparent-wrapper").hide();
+	document.getElementById("float-box").classList.remove("grid");
 	$("#float-box").hide();
 	showLoading();
 	showStatus("Creating folder in progress...");
@@ -233,8 +235,8 @@ function makeFolder(folderName) {
 }
 
 $(".btnClose, .imgClose").click(function () {
-	$("#transparent-wrapper").hide();
-	$(".float-box").hide();
+	document.getElementById("float-box").classList.remove("grid");
+	// $("#float-box").hide();
 });
 
 /******************** END PAGE LOAD ********************/
