@@ -16,8 +16,6 @@ var FOLDER_PERMISSION = true;
 var FOLDER_LEVEL = 0;
 var NO_OF_FILES = 1000;
 var DRIVE_FILES = [];
-var FILE_COUNTER = 0;
-var FOLDER_ARRAY = [];
 
 /******************** AUTHENTICATION ********************/
 
@@ -32,7 +30,7 @@ function initClient() {
 		clientId: CLIENT_ID,
 		scope: SCOPES.join(' ')
 	}).then(function () {
-		
+
 		// Listen for sign-in state changes.
 		gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
 		// Handle the initial sign-in state.
@@ -154,24 +152,43 @@ $("#gdrive-upload").click(function () {
 });
 
 $("#root-folder").click(function () {
-	showLoading();
-	showStatus("Uploading Images To Drive...");
-	uploadPictures("root");
+	if (IMAGE_COUNTER > 0) {
+		showLoading();
+		showStatus("Uploading Images To Drive...");
+		uploadPictures("root");
+	}
 });
 
 $("#insta-folder").click(function () {
-	showLoading();
-	var inputCheck = () => checkFolderExistence("InstaSquare");
-	gapi.client.load('drive', 'v2', inputCheck);
+	if (IMAGE_COUNTER > 0) {
+		showLoading();
+		var inputCheck = () => checkFolderExistence("InstaSquare");
+		gapi.client.load('drive', 'v2', inputCheck);
+	}
 });
 
 $("#custom-folder").click(function () {
-	if (checkFolderExistence($("#txtFolder").val() == "")) {
-		return;
-	}
-	showLoading();
-	var inputCheck = () => checkFolderExistence($("#txtFolder").val());
-	gapi.client.load('drive', 'v2', inputCheck);
+	var input = document.querySelector("#txtFolder");
+	input.disabled = false;
+	input.classList.remove("disabled");
+	input.focus();
+
+	// Execute a function when the user releases a key on the keyboard
+	input.addEventListener("keyup", function (event) {
+		// Cancel the default action, if needed
+		event.preventDefault();
+		// Number 13 is the "Enter" key on the keyboard
+		if (event.keyCode === 13) {
+			if ($("#txtFolder").val() != "" && IMAGE_COUNTER > 0) {
+				showLoading();
+				var inputCheck = () => checkFolderExistence($("#txtFolder").val());
+				gapi.client.load('drive', 'v2', inputCheck);
+			} else {
+				showErrorMessage("Type a folder name first!");
+			}
+		}
+	});
+
 });
 
 function checkFolderExistence(folderName) {
@@ -195,14 +212,14 @@ function checkFolderExistence(folderName) {
 
 		} else {
 			showErrorMessage("Error: " + resp.error.message);
-		}	
+		}
 	});
 }
 
 function makeFolder(folderName) {
 	console.log("makeFolder");
 	document.getElementById("float-box").classList.remove("grid");
-	$("#float-box").hide();
+	// $("#float-box").hide();
 	showLoading();
 	showStatus("Creating folder in progress...");
 	var access_token = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().access_token;

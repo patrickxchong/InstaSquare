@@ -5,6 +5,7 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -58,32 +59,30 @@
               </li>
             </div>
             <a href="https://mail.google.com/mail/?view=cm&fs=1&to=pcjh@umich.edu&su=[InstaSquare] &body=Hello Patrick!" target="blank">
-            <li class="icon">
+              <li class="icon">
                 <i class="fas fa-envelope"></i>
-              Contact
-            </li></a>
+                Contact
+              </li>
+            </a>
           </ul>
         </nav>
         <div class="float-box" id="float-box">
           <h3>Upload to: </h3>
-            <li id="root-folder" class="icon">
-                <i class="far fa-folder-open"></i>
-                <p>Home Folder</p>
-            </li>
-            <li id="insta-folder" class="icon">
-                <i class="far fa-folder-open"></i>
-                <p>"InstaSquare" Folder</p>
-            </li>
-            <li id="custom-folder" class="icon">
-                <i class="far fa-folder-open"></i>
-                <p>Custom Folder</p>
-                <input type="text" id="txtFolder" class="text-input" />
-            </li>
-
-            <!-- <button id="btnAddFolder" value="Save" class="button">Add</button> -->
-
-            <button id="btnClose" value="Close" class="button btnClose">Cancel</button>
-          </div>
+          <li id="root-folder" class="icon">
+            <i class="far fa-folder-open"></i>
+            <p>Home Folder</p>
+          </li>
+          <li id="insta-folder" class="icon">
+            <i class="far fa-folder-open"></i>
+            <p>"InstaSquare" Folder</p>
+          </li>
+          <li id="custom-folder" class="icon">
+            <i class="far fa-folder-open"></i>
+            <p>Custom Folder</p>
+            <input type="text" id="txtFolder" class="text-input disabled" disabled/>
+          </li>
+          <button id="btnClose" value="Close" class="button btnClose">Cancel</button>
+        </div>
       </div>
       <div class="bottom">
         <!-- Social Icons -->
@@ -136,7 +135,10 @@
     </div>
   </div>
   <script>
-    // document.querySelector("#download-options").style.display = "none";
+    var IMAGE_COUNTER = 0;
+    if (IMAGE_COUNTER <= 0) {
+      document.querySelector("#download-options").style.display = "none";
+    }
   </script>
   <script src="js/jquery.min.js"></script>
   <script async defer src="js/google-api.js" onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>

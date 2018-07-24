@@ -1,34 +1,36 @@
 function downloadZip() {
-  var zip = new JSZip();
+  if (IMAGE_COUNTER > 0) {
+    var zip = new JSZip();
 
-  var links = document.querySelectorAll(".img_link");
-  for (var i = 0; i < links.length; ++i) {
-    // Add a file to the directory, in this case an image with data URI as contents
-    zip.file(links[i].download, links[i].href.split('base64,')[1], {
-      base64: true
-    });
+    var links = document.querySelectorAll(".img_link");
+    for (var i = 0; i < links.length; ++i) {
+      // Add a file to the directory, in this case an image with data URI as contents
+      zip.file(links[i].download, links[i].href.split('base64,')[1], {
+        base64: true
+      });
+    }
+
+    // Generate the zip file asynchronously
+    zip.generateAsync({
+        type: "blob"
+      })
+      .then(function (content) {
+        // Force down of the Zip file
+        saveAs(content, "images.zip");
+      });
   }
-
-
-  // Generate the zip file asynchronously
-  zip.generateAsync({
-      type: "blob"
-    })
-    .then(function (content) {
-      // Force down of the Zip file
-      saveAs(content, "images.zip");
-    });
 }
 
 function newFiles(element) {
   document.querySelector("#img_placeholder").style.display = "none";
   document.querySelector("#download-options").style.display = "none";
   showLoading();
-	showStatus("Uploading Images...");
+  showStatus("Uploading Images...");
 
   var app = document.getElementById("app");
 
   for (var i = 0; i < element.files.length; ++i) {
+    ++IMAGE_COUNTER;
     readFileAndProcess(element.files[i], i, element.files.length);
   }
 
@@ -67,8 +69,10 @@ function newFiles(element) {
         removeBtn.classList.add("remove");
         removeBtn.innerHTML = "&times;";
         removeBtn.addEventListener("click", function () {
+          --IMAGE_COUNTER;
           this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
           if (document.querySelectorAll(".img_link").length == 0) {
+            document.querySelector("#download-options").style.display = "none";
             document.getElementById("img_placeholder").style.display = "grid";
           }
         });

@@ -36,7 +36,7 @@
   position: fixed;
   left: 50%;
   margin-left: -300px;
-  top: 30%;
+  top: 20%;
   z-index: 1000000;
   background: #222629;
   display: none;
@@ -61,11 +61,12 @@ div .grid li {
   cursor: pointer;
   border-radius: 0.2rem;
   background: rgb(78, 70, 70);
-  width: 100%;
-  height: 100%; 
+  width: 8rem;
+  height: 7rem; 
   display: flex;
   flex-direction: column;
   align-items: center;
+  
 }
 
 div .grid li:hover {  
@@ -75,8 +76,16 @@ div .grid li:hover {
 div .grid li i {
   list-style: none;
   font-size: 1.4rem;
-  padding: 0.4rem 0rem;
+  padding: 0.7rem 0rem;
 }
+
+div .grid li p {
+  padding: 0.7rem 0rem;
+}
+
+div .grid li input {
+}
+
 
 
 div .grid #root-folder {
@@ -94,28 +103,25 @@ div .grid #custom-folder {
   grid-row: 2/3;
 }
 
+.disabled {
+  background-color: #f4f6f6;
+  border-color: #d5dbdb;
+  color: #d5dbdb;
+  cursor: default;
+  opacity: 0.7;
+  filter: "alpha(opacity=70)";
+}
+
 div .grid button {
   grid-column: 2/3;
   grid-row: 3/4;
 }
-
-div .grid input {
-  grid-column: 3/4;
-  grid-row: 3/4;
-}
-
 
 .float-box h3 {
   color: white;
   font-size: 0.7rem;
   font-weight: 600;
 }
-
-/* .float-box .close-x {
-  float: right;
-  display: inline-block;
-  cursor: pointer;
-} */
 
 .float-box .text-input {
   width: 90%;
