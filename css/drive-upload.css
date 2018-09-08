@@ -26,34 +26,104 @@
 /************* FLOATING BOX *********************/
 
 .float-box {
-  border-radius: 0px;
-  -webkit-box-shadow: 7px 7px 5px rgba(50, 50, 50, 0.75);
+  border-radius: 0.3rem;
+  /*-webkit-box-shadow: 7px 7px 5px rgba(50, 50, 50, 0.75);
   -moz-box-shadow: 7px 7px 5px rgba(50, 50, 50, 0.75);
-  box-shadow: 7px 7px 5px rgba(50, 50, 50, 0.75);
-  width: 500px;
-  padding: 7px 10px;
-  border: solid 1px #ccc;
+  box-shadow: 7px 7px 5px rgba(50, 50, 50, 0.75); */
+  width: 800px;
+  padding: 1rem;
+  /* border: solid 1px #ccc; */
   position: fixed;
   left: 50%;
-  margin-left: -200px;
-  top: 35%;
+  margin-left: -300px;
+  top: 20%;
   z-index: 1000000;
-  background-color: #fff;
+  background: #222629;
   display: none;
 }
 
-.float-box h3 {
-  color: black;
-  font-size: 0.7rem;
+div .grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 0.8rem;
+  place-items: center center;
 }
 
-.close-x {
-  float: right;
-  display: inline-block;
+div .grid h3 {
+  grid-column: 2/3;
+  grid-row: 1/2;
+  align-self: center;
+}
+
+div .grid li {
+  list-style: none;
+  font-size: 0.8rem;
   cursor: pointer;
+  border-radius: 0.2rem;
+  background: rgb(78, 70, 70);
+  width: 8rem;
+  height: 7rem; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
 }
 
-.text-input {
+div .grid li:hover {  
+  background: #2e2e2c;
+}
+
+div .grid li i {
+  list-style: none;
+  font-size: 1.4rem;
+  padding: 0.7rem 0rem;
+}
+
+div .grid li p {
+  padding: 0.7rem 0rem;
+}
+
+div .grid li input {
+}
+
+
+
+div .grid #root-folder {
+  grid-column: 1/2;
+  grid-row: 2/3;
+}
+
+div .grid #insta-folder {
+  grid-column: 2/3;
+  grid-row: 2/3;
+}
+
+div .grid #custom-folder {
+  grid-column: 3/4;
+  grid-row: 2/3;
+}
+
+.disabled {
+  background-color: #f4f6f6;
+  border-color: #d5dbdb;
+  color: #d5dbdb;
+  cursor: default;
+  opacity: 0.7;
+  filter: "alpha(opacity=70)";
+}
+
+div .grid button {
+  grid-column: 2/3;
+  grid-row: 3/4;
+}
+
+.float-box h3 {
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.float-box .text-input {
   width: 90%;
   padding: 5px;
   border-radius: 5px;
@@ -135,11 +205,6 @@
 
 .button {
   background: #3498db;
-  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
-  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
-  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
-  background-image: -o-linear-gradient(top, #3498db, #2980b9);
-  background-image: linear-gradient(to bottom, #3498db, #2980b9);
   border: none;
   -webkit-border-radius: 8;
   -moz-border-radius: 8;
@@ -154,11 +219,6 @@
 
 .button:hover {
   background: #3cb0fd;
-  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
-  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
   text-decoration: none;
   border: none;
 }

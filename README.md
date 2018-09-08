@@ -8,7 +8,6 @@ However, Claire wanted to upload a mix of both portait + landscape pictures and 
 
 ## Installation and Usage
 
-<<<<<<< HEAD
 This project would not have been possible without the help of the following Javascript libraries:
 * [Jimp](https://github.com/oliver-moran/jimp) - To square the images
 * [JSZip](https://stuk.github.io/jszip/) - To store squared images for download
