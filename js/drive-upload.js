@@ -21,7 +21,7 @@ var FOLDER_ARRAY = [];
 
 /******************** AUTHENTICATION ********************/
 
-function handleClientLoad() {
+function init() {
 	// Load the API client and auth2 library
 	gapi.load('client:auth2', initClient);
 }
@@ -46,7 +46,6 @@ function updateSigninStatus(isSignedIn) {
 	if (isSignedIn) {
 		gapi.client.load('drive', 'v2', updateEmail);
 		$("#drive-box").show();
-		// $("#drive-box").css("display", "inline-block");
 		$("#login-box").hide();
 	} else {
 		$("#login-box").show();
