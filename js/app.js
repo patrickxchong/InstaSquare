@@ -22,6 +22,11 @@ function downloadZip() {
 }
 
 function newFiles(element) {
+  if (element.files.length > 20) {
+    alert("Too many files uploaded! (Max 20)");
+    return;
+  }
+
   document.querySelector("#img_placeholder").style.display = "none";
   document.querySelector("#download-options").style.display = "none";
   showLoading();

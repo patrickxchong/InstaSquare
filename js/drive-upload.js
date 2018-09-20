@@ -43,27 +43,37 @@ function initClient() {
 function updateSigninStatus(isSignedIn) {
 	if (isSignedIn) {
 		gapi.client.load('drive', 'v2', updateEmail);
-		$("#drive-box").show();
 		$("#login-box").hide();
+		$("#login-loader").hide();
+		$("#drive-box").show();
 	} else {
-		$("#login-box").show();
 		$("#drive-box").hide();
+		$("#login-loader").hide();
+		$("#login-box").show();
 	}
 }
 
-function handleAuthClick(event) {
-	gapi.auth2.getAuthInstance().signIn().then(updateEmail);
+function handleAuthClick(cb) {
+	gapi.auth2.getAuthInstance().signIn().then(updateEmail).then(cb);
 }
 
 function updateEmail() {
 	var request = gapi.client.drive.about.get();
 	request.execute(function (resp) {
 		if (!resp.error) {
-			document.getElementById("gmail").innerHTML = "Logged in as: " + resp.user.emailAddress;
+			document.getElementById("drive-box").innerHTML =
+				`<p id="gmail">Logged in as: ` + resp.user.emailAddress +
+				`</p> <div style="display: flex; margin-top: 0;">
+            <p id="switchAcc" onclick="handleAuthClick()">(Switch Account)</p>
+            <p id="logout" onclick="handleSignoutClick()">(Log Out)</p>
+        </div>`;
 		} else {
 			showErrorMessage("Error: " + resp.error.message);
 		}
 	});
+	return new Promise(function(resolve) {
+    resolve("Freedom!");
+  });
 }
 
 function handleSignoutClick(event) {
@@ -145,9 +155,17 @@ function uploadPictures(folderID) {
 
 
 $("#gdrive-upload").click(function () {
-	// $("#float-box").show();
-	document.getElementById("float-box").classList.add("grid");
-	$("#txtFolder").val("");
+	if (document.getElementById("login-box").style.display != 'none') {
+		handleAuthClick(function () {
+			$("#txtFolder").val("");
+			document.getElementById("float-box").classList.add("grid");
+			return;
+		});
+	}
+	else {
+		$("#txtFolder").val("");
+		document.getElementById("float-box").classList.add("grid");
+	}
 });
 
 $("#root-folder").click(function () {
@@ -261,15 +279,12 @@ $(".btnClose, .imgClose").click(function () {
 /******************** NOTIFICATION ********************/
 //show loading animation
 function showLoading() {
-	if ($("#drive-box-loading").length === 0) {
-		$("#drive-box").prepend("<div id='drive-box-loading'></div>");
-	}
-	$("#drive-box-loading").html("<div id='loading-wrapper'><div id='loading'><img src='css/images/loading-bubble.gif'></div></div>");
+	document.querySelector("#upload-loader").style.display = "flex";
 }
 
 //hide loading animation
 function hideLoading() {
-	$("#drive-box-loading").html("");
+	$("#upload-loader").hide();
 }
 
 

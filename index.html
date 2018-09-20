@@ -12,14 +12,22 @@
   <title>InstaSquare</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="icon" type="image/png" href="favicon.png">
   <link rel="stylesheet" type="text/css" href="css/reset.css">
   <link rel="stylesheet" type="text/css" href="css/index.css">
+  <link rel="stylesheet" type="text/css" href="css/loader.css">
   <link rel="stylesheet" type="text/css" href="css/drive-upload.css" />
-  <link rel="stylesheet" type="text/css" href="css/fontawesome-all.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+    crossorigin="anonymous">
 </head>
 
 <body>
+  <div id="upload-loader">
+      <div class="loader"></div>
+      <br>
+      <p>Processing your photos</p>
+  </div>
   <div id="wrapper">
     <div id="left-column">
       <input type="file" id="file" name="files[]" onchange="newFiles(this)" multiple />
@@ -29,17 +37,17 @@
           <h1 id="title">InstaSquare</h1>
           <p>An app to bulk square photos for Instagram</p>
           <div id="download-wrapper">
+            <div id="login-loader">
+              <div class="loader"></div>
+              <p>Checking if you've logged in</p>
+            </div>
             <div id="login-box" class="hide">
               <p>To upload to Drive, please login to your Google account.
                 <span id="login" onclick="handleAuthClick()">(Log In)</span>
               </p>
             </div>
             <div id="drive-box" class="hide">
-              <p id="gmail">Logged in as: </p>
-              <div style="display: flex; margin-top: 0;">
-                <p id="switchAcc" onclick="handleAuthClick()">(Switch Account)</p>
-                <p id="logout" onclick="handleSignoutClick()">(Log Out)</p>
-              </div>
+
             </div>
           </div>
         </div>
@@ -58,7 +66,8 @@
                 Upload to Google Drive
               </li>
             </div>
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=pcjh@umich.edu&su=[InstaSquare] &body=Hello Patrick!" target="blank">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=pcjh@umich.edu&su=[InstaSquare] &body=Hello Patrick!"
+              target="blank">
               <li class="icon">
                 <i class="fas fa-envelope"></i>
                 Contact
@@ -79,40 +88,28 @@
           <li id="custom-folder" class="icon">
             <i class="far fa-folder-open"></i>
             <p>Custom Folder</p>
-            <input type="text" id="txtFolder" class="text-input disabled" disabled/>
+            <input type="text" id="txtFolder" class="text-input disabled" disabled />
           </li>
           <button id="btnClose" value="Close" class="button btnClose">Cancel</button>
         </div>
       </div>
       <div class="bottom">
         <!-- Social Icons -->
-        <ul class="icons">
-          <!-- <li>
-            <a href="#" class="icon fab fa-twitter">
-              <span class="label">Twitter</span>
-            </a>
-          </li> -->
-          <li>
-            <a href="https://www.facebook.com/PatrickChongJinHua" class="icon fab fa-facebook">
-              <span class="label">Facebook</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/patch153" class="icon fab fa-github">
-              <span class="label">Github</span>
-            </a>
-          </li>
-          <!-- <li>
-            <a href="#" class="icon fab fa-dribbble">
-              <span class="label">Dribbble</span>
-            </a>
-          </li> -->
-          <li>
-            <a href="mailto:pcjh@umich.edu" class="icon fab fa-envelope">
-              <span class="label">Email</span>
-            </a>
-          </li>
-        </ul>
+
+        <div class="icons">
+          <a href="https://www.facebook.com/PatrickChongJinHua" class="icon">
+            <i class="fab fa-facebook"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/patrickchongjinhua/" class="icon">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="https://github.com/patch153" class="icon">
+            <i class="fab fa-github-square"></i>
+          </a>
+          <a href="mailto:pcjh@umich.edu" class="icon">
+            <i class="fas fa-envelope-square"></i>
+          </a>
+        </div>
       </div>
     </div>
     <div id="left-column-placeholder"></div>
