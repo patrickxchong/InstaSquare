@@ -1,0 +1,230 @@
+/*************** Google Drive Box ***************/
+
+#download-wrapper {
+  height: 60px;
+  margin-top: 10px;
+}
+
+#drive-menu {
+  display: flex;
+  align-items: center;
+}
+
+#drive-menu>* {
+  margin-right: 5px;
+}
+
+#drive-box,
+#login-box {
+  font-size: 0.8rem;
+  text-align: left;
+  width: 100%;
+}
+
+/*************** END Google Drive Box ***************/
+
+/************* FLOATING BOX *********************/
+
+.float-box {
+  border-radius: 0.3rem;
+  /*-webkit-box-shadow: 7px 7px 5px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow: 7px 7px 5px rgba(50, 50, 50, 0.75);
+  box-shadow: 7px 7px 5px rgba(50, 50, 50, 0.75); */
+  width: 800px;
+  padding: 1rem;
+  /* border: solid 1px #ccc; */
+  position: fixed;
+  left: 50%;
+  margin-left: -300px;
+  top: 20%;
+  z-index: 1000000;
+  background: #222629;
+  display: none;
+}
+
+div .grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 0.8rem;
+  place-items: center center;
+}
+
+div .grid h3 {
+  grid-column: 2/3;
+  grid-row: 1/2;
+  align-self: center;
+}
+
+div .grid li {
+  list-style: none;
+  font-size: 0.8rem;
+  cursor: pointer;
+  border-radius: 0.2rem;
+  background: rgb(78, 70, 70);
+  width: 8rem;
+  height: 7rem; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+div .grid li:hover {  
+  background: #2e2e2c;
+}
+
+div .grid li i {
+  list-style: none;
+  font-size: 1.4rem;
+  padding: 0.7rem 0rem;
+}
+
+div .grid li p {
+  padding: 0.7rem 0rem;
+}
+
+div .grid li input {
+}
+
+
+
+div .grid #root-folder {
+  grid-column: 1/2;
+  grid-row: 2/3;
+}
+
+div .grid #insta-folder {
+  grid-column: 2/3;
+  grid-row: 2/3;
+}
+
+div .grid #custom-folder {
+  grid-column: 3/4;
+  grid-row: 2/3;
+}
+
+.disabled {
+  background-color: #f4f6f6;
+  border-color: #d5dbdb;
+  color: #d5dbdb;
+  cursor: default;
+  opacity: 0.7;
+  filter: "alpha(opacity=70)";
+}
+
+div .grid button {
+  grid-column: 2/3;
+  grid-row: 3/4;
+}
+
+.float-box h3 {
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.float-box .text-input {
+  width: 90%;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 10px 0px;
+}
+
+/************* END FLOATING BOX *********************/
+
+/*************** NOTIFICATION ******************/
+
+#loading-wrapper {
+  width: 100%;
+  height: 100%;
+  background: #000;
+  -moz-opacity: 0.25;
+  opacity: .25;
+  filter: alpha(opacity=25);
+  top: 0;
+  left: 0;
+  position: absolute;
+}
+
+#loading {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -60px;
+  margin-top: -60px;
+  width: 120px;
+}
+
+#status-message {
+  border: solid 1px #fbfbd4;
+  background: #fbfbd4;
+  border-radius: 5px;
+  padding: 5px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  z-index: 9999999999;
+}
+
+#error-message {
+  border: solid 1px #f2fcb9;
+  background: #d83813;
+  border-radius: 5px;
+  color: #fff;
+  padding: 10px;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  z-index: 9999999999;
+  max-width: 400px;
+  border-radius: 5px;
+  display: none;
+}
+
+#upload-percentage {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -25px;
+  margin-top: -100px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #297ab8;
+  color: #fff;
+  text-align: center;
+  line-height: 50px;
+  font-weight: bold;
+  font-size: 15px;
+  display: none;
+}
+
+/*************** END NOTIFICATION ******************/
+
+/***************** MISC ************************/
+
+.button {
+  background: #3498db;
+  border: none;
+  -webkit-border-radius: 8;
+  -moz-border-radius: 8;
+  border-radius: 8px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 11px;
+  padding: 5px 10px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: #3cb0fd;
+  text-decoration: none;
+  border: none;
+}
+
+.hide {
+  display: none;
+}
+
+/***************** END MISC ***********************

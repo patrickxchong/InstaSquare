@@ -1,0 +1,151 @@
+<!DOCTYPE HTML>
+<!--
+	Prologue by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>InstaSquare</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" type="text/css" href="css/reset.css">
+  <link rel="stylesheet" type="text/css" href="css/index.css">
+  <link rel="stylesheet" type="text/css" href="css/loader.css">
+  <link rel="stylesheet" type="text/css" href="css/drive-upload.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+    crossorigin="anonymous">
+</head>
+
+<body>
+  <div id="upload-loader">
+      <div class="loader"></div>
+      <br>
+      <p>Processing your photos</p>
+  </div>
+  <div id="wrapper">
+    <div id="left-column">
+      <input type="file" id="file" name="files[]" onchange="newFiles(this)" multiple />
+      <div class="top">
+        <!-- Logo -->
+        <div id="logo">
+          <h1 id="title">InstaSquare</h1>
+          <p>An app to bulk square photos for Instagram</p>
+          <div id="download-wrapper">
+            <div id="login-loader">
+              <div class="loader"></div>
+              <p>Checking if you've logged in</p>
+            </div>
+            <div id="login-box" class="hide">
+              <p>To upload to Drive, please login to your Google account.
+                <span id="login" onclick="handleAuthClick()">(Log In)</span>
+              </p>
+            </div>
+            <div id="drive-box" class="hide">
+
+            </div>
+          </div>
+        </div>
+        <!-- Nav -->
+        <nav id="nav">
+          <ul>
+            <li class="active icon" onclick="document.getElementById('file').click(); return false;">
+              <i class="fas fa-th"></i>Upload Images
+            </li>
+            <div id="download-options">
+              <li id="download-zip" class="icon" onclick="downloadZip()">
+                <i class="far fa-file-archive"></i>Download as Zip
+              </li>
+              <li id="gdrive-upload" class="icon">
+                <i class="fab fa-google-drive"></i>
+                Upload to Google Drive
+              </li>
+            </div>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=pcjh@umich.edu&su=[InstaSquare] &body=Hello Patrick!"
+              target="blank">
+              <li class="icon">
+                <i class="fas fa-envelope"></i>
+                Contact
+              </li>
+            </a>
+          </ul>
+        </nav>
+        <div class="float-box" id="float-box">
+          <h3>Upload to: </h3>
+          <li id="root-folder" class="icon">
+            <i class="far fa-folder-open"></i>
+            <p>Home Folder</p>
+          </li>
+          <li id="insta-folder" class="icon">
+            <i class="far fa-folder-open"></i>
+            <p>"InstaSquare" Folder</p>
+          </li>
+          <li id="custom-folder" class="icon">
+            <i class="far fa-folder-open"></i>
+            <p>Custom Folder</p>
+            <input type="text" id="txtFolder" class="text-input disabled" disabled />
+          </li>
+          <button id="btnClose" value="Close" class="button btnClose">Cancel</button>
+        </div>
+      </div>
+      <div class="bottom">
+        <!-- Social Icons -->
+
+        <div class="icons">
+          <a href="https://www.facebook.com/PatrickChongJinHua" class="icon">
+            <i class="fab fa-facebook"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/patrickchongjinhua/" class="icon">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="https://github.com/patch153" class="icon">
+            <i class="fab fa-github-square"></i>
+          </a>
+          <a href="mailto:pcjh@umich.edu" class="icon">
+            <i class="fas fa-envelope-square"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div id="left-column-placeholder"></div>
+    <div id="right-column">
+      <div>
+        <div id="app">
+          <div id="img_placeholder" class="img_wrapper">
+            <div>Pictures
+              <br> Appear
+              <br> Here!</div>
+          </div>
+        </div>
+      </div>
+      <div id="contact">
+        <p>Created by: Patrick Chong Jin Hua</p>
+        <p>If you have any suggestions for improvement, please direct them to pcjh@umich.edu. :)</p>
+      </div>
+      <div id="error-message" class="hidden"></div>
+      <div id="status-message" class="hidden"></div>
+    </div>
+  </div>
+  <script>
+    var IMAGE_COUNTER = 0;
+    if (IMAGE_COUNTER <= 0) {
+      document.querySelector("#download-options").style.display = "none";
+    }
+    var UPLOADED = 0;
+  </script>
+  <script src="js/jquery.min.js"></script>
+  <!-- <script async defer src="js/google-api.js" onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()"></script> -->
+  <script src="js/platform.js?onload=init" async defer></script>
+  <script src="js/drive-upload.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/jimp.min.js"></script>
+  <script src="js/jszip.min.js"></script>
+  <script src="js/FileSaver.min.js"></script>
+</body>
+
+</html>
