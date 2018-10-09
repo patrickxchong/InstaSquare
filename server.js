@@ -17,27 +17,36 @@ app.get('/', function(req, res) {
 })
 
 app.post('/', upload.single('file'), function(req, res) {
-
-  jimp.read(req.file.path).then(function (image) {
+  jimp.read(req.file.path).then(function(image) {
     if (image.bitmap.width > image.bitmap.height) {
-      image.contain(image.bitmap.width, image.bitmap.width).quality(100)
-        .background(0xFFFFFFFF)
-        .getBase64(jimp.AUTO, function (err, src) {
-          if (err) throw err;
+      image
+        .contain(image.bitmap.width, image.bitmap.width)
+        .quality(100)
+        .background(0xffffffff)
+        .getBase64(jimp.AUTO, function(err, src) {
+          if (err) throw err
+          fs.unlink(req.file.path, function(err) {
+            if (err) return console.log(err)
+            console.log('file deleted successfully')
+          })
           res.send(src)
         })
-
     } else {
-      image.contain(image.bitmap.height, image.bitmap.height).quality(100)
-        .background(0xFFFFFFFF)
-        .getBase64(jimp.AUTO, function (err, src) {
-          if (err) throw err;
+      image
+        .contain(image.bitmap.height, image.bitmap.height)
+        .quality(100)
+        .background(0xffffffff)
+        .getBase64(jimp.AUTO, function(err, src) {
+          if (err) throw err
+          fs.unlink(req.file.path, function(err) {
+            if (err) return console.log(err)
+            console.log('file deleted successfully')
+          })
           res.send(src)
         })
     }
   })
-  
 })
-app.listen(process.env.PORT || 5000, function() {
+app.listen(process.env.PORT || 8000, function() {
   console.log('InstaSquare!')
 })
