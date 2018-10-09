@@ -12,9 +12,9 @@ var os = require('os')
 var path = require('path')
 const Busboy = require('busboy')
 
-app.use(express.static('public'))
+// app.use(express.static('public'))
 
-app.set('view engine', 'ejs')
+// app.set('view engine', 'ejs')
 
 app.get('/', function(req, res) {
   res.render('index')
@@ -65,36 +65,42 @@ app.post('/upload', function(req, res) {
   // We still need to wait for the disk writes (saves) to complete.
   busboy.on('finish', () => {
     Promise.all(fileWrites).then(() => {
+      console.log(uploads.file)
       // TODO(developer): Process saved files here
-      for (const name in uploads) {
-        const file = uploads[name]
-        Jimp.read(file).then(function(image) {
-          if (image.bitmap.width > image.bitmap.height) {
-            image
-              .contain(image.bitmap.width, image.bitmap.width)
-              .quality(100)
-              .background(0xffffffff)
-              .getBase64(Jimp.AUTO, function(err, src) {
-                if (err) throw err
-                res.send(src)
+      // for (const name in uploads) {
+      //   const file = uploads[name]
+      Jimp.read(uploads.file).then(function(image) {
+        if (image.bitmap.width > image.bitmap.height) {
+          image
+            .contain(image.bitmap.width, image.bitmap.width)
+            .quality(100)
+            .background(0xffffffff)
+            .getBase64(Jimp.AUTO, function(err, src) {
+              if (err) throw err
+              res.end(src, function() {
+                fs.unlinkSync(uploads.file)
               })
-          } else {
-            image
-              .contain(image.bitmap.height, image.bitmap.height)
-              .quality(100)
-              .background(0xffffffff)
-              .getBase64(Jimp.AUTO, function(err, src) {
-                if (err) throw err
-                res.send(src)
+            })
+        } else {
+          image
+            .contain(image.bitmap.height, image.bitmap.height)
+            .quality(100)
+            .background(0xffffffff)
+            .getBase64(Jimp.AUTO, function(err, src) {
+              if (err) throw err
+              // res.send(src);
+              res.end(src, function() {
+                fs.unlinkSync(uploads.file)
               })
-          }
-        })
-      }
+            })
+        }
+      })
+      // }
 
-      for (const name in uploads) {
-        const file = uploads[name]
-        fs.unlinkSync(file)
-      }
+      // for (const name in uploads) {
+      //   const file = uploads[name]
+      //   fs.unlinkSync(file)
+      // }
     })
   })
 
