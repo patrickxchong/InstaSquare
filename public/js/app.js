@@ -36,7 +36,7 @@ function newFiles(element) {
   var app = document.getElementById('app')
   UPLOADED += element.files.length
   for (var i = 0; i < element.files.length; ++i) {
-    readFileAndProcess(element.files[i])
+    setTimeout(readFileAndProcess.bind(null,element.files[i]), i*3000)
   }
 }
 
