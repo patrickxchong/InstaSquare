@@ -36,11 +36,13 @@ function newFiles(element) {
   var app = document.getElementById('app')
   UPLOADED += element.files.length
   for (var i = 0; i < element.files.length; ++i) {
-    setTimeout(readFileAndProcess.bind(null,element.files[i]), i*3000)
+    // setTimeout(readFileAndProcess.bind(null,element.files[i], i), i*3000)
+    readFileAndProcess(element.files[i], i)
   }
 }
 
-function readFileAndProcess(file) {
+function readFileAndProcess(file, num) {
+  console.log ("File ", num)
   var formData = new FormData()
   var request = new XMLHttpRequest()
   formData.set('file', file)
