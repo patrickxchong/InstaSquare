@@ -66,9 +66,7 @@ app.post('/upload', function(req, res) {
   busboy.on('finish', () => {
     Promise.all(fileWrites).then(() => {
       console.log(uploads.file)
-      // TODO(developer): Process saved files here
-      // for (const name in uploads) {
-      //   const file = uploads[name]
+      
       Jimp.read(uploads.file).then(function(image) {
         if (image.bitmap.width > image.bitmap.height) {
           image
@@ -95,12 +93,6 @@ app.post('/upload', function(req, res) {
             })
         }
       })
-      // }
-
-      // for (const name in uploads) {
-      //   const file = uploads[name]
-      //   fs.unlinkSync(file)
-      // }
     })
   })
 
