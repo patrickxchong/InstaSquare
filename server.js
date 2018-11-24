@@ -47,6 +47,11 @@ app.post('/', upload.single('file'), function(req, res) {
     }
   })
 })
-app.listen(process.env.PORT || 8000, function() {
-  console.log('InstaSquare!')
-})
+
+
+var server_port = process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT  || 8000
+var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
+
+app.listen(server_port, server_ip_address, function () {
+  console.log( "Listening on " + server_ip_address + ", port " + server_port )
+});
