@@ -3,7 +3,7 @@
   align-items: center;
 }
 
-#login-loader >p {
+#login-loader > p {
   margin-left: 10px;
   font-size: 0.6rem;
 }
@@ -13,8 +13,12 @@
   flex-direction: column;
   align-items: center;
   position: absolute;
-  top: 40%;
+  top: 20%;
   left: 40%;
+  z-index: 100;
+  background: white;
+  padding: 100px 60px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 #upload-loader .loader,

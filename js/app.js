@@ -61,8 +61,8 @@ function addImgToPage(image, fileName) {
 }
 
 function newFiles(element) {
-  if (element.files.length > 20) {
-    alert("Too many files uploaded! (Max 20)");
+  if (element.files.length > 50) {
+    alert("Too many files uploaded! (Max 50)");
     return;
   }
 
@@ -119,19 +119,21 @@ function newFiles(element) {
 
       img.onload = function() {
         let dataurl = imageToDataUri(img);
-        addImgToPage(dataurl, element.files[counter].name);
-
-        // Stop condition for recursion
-        if (counter + 1 === length) {
-          document.getElementById("download-options").style.display = "block";
-          hideLoading();
-          hideStatus();
-        }
-        // load in next picture
-        else if (counter + 1 < length) {
-          console.log("sending in next picture");
-          readFileAndProcess(element, counter + 1, length);
-        }
+        setTimeout(() => {
+          addImgToPage(dataurl, element.files[counter].name);
+          // Stop condition for recursion
+          if (counter + 1 === length) {
+            document.getElementById("download-options").style.display = "block";
+            hideLoading();
+            hideStatus();
+          }
+          // load in next picture
+          else if (counter + 1 < length) {
+            setTimeout(() => {
+              readFileAndProcess(element, counter + 1, length);
+            }, 1000);
+          }
+        }, 1000);
       };
     };
 
@@ -153,17 +155,35 @@ function imageToDataUri(img) {
     canvas.height = img.width;
   }
 
-  // fill entire canvas with white first
-  ctx.beginPath();
-  ctx.rect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = "white";
-  ctx.fill();
-
   // get offsets to position image into center of canvas element
   let xOffset = img.width < canvas.width ? (canvas.width - img.width) / 2 : 0;
   let yOffset =
     img.height < canvas.height ? (canvas.height - img.height) / 2 : 0;
 
+  // set its dimension to target size
+  if (img.height > img.width) {
+    // fill entire canvas with white first
+    ctx.beginPath();
+    ctx.rect(0, 0, xOffset + 10, canvas.height);
+    ctx.fillStyle = "white";
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.rect(xOffset + img.width - 10, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "white";
+    ctx.fill();
+  } else {
+    // fill entire canvas with white first
+    ctx.beginPath();
+    ctx.rect(0, 0, canvas.width, yOffset + 10);
+    ctx.fillStyle = "white";
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.rect(0, yOffset + img.height - 10, canvas.width, canvas.height);
+    ctx.fillStyle = "white";
+    ctx.fill();
+  }
   // draw source image into the off-screen canvas:
   ctx.drawImage(img, xOffset, yOffset, img.width, img.height);
 
