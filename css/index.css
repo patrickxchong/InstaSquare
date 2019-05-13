@@ -94,6 +94,11 @@ h1 {
   padding: 1.5em 0 0.75em 0;
 }
 
+#left-column .bottom  > a{
+  font-size: 20px;
+  color: #41484c;
+}
+
 
 #left-column .icons {
   font-size: 0.7rem;
