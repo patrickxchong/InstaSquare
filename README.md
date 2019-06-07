@@ -22,7 +22,7 @@ To run the web app locally
 * Run `python -m http.server 8000` in the folder containing `index.html`
 * Go to `http://localhost:8000/index.html` on any modern web browser
 
-Alternatively, navigate to https://instant-square.firebaseapp.com for an hosted version of the app.
+Alternatively, navigate to http://instasquare.netlify.com for an hosted version of the app.
 
 ## Contributing
 
@@ -34,6 +34,8 @@ Alternatively, navigate to https://instant-square.firebaseapp.com for an hosted 
 
 
 ## History
+* 0.3.0
+    * Stopped using the JIMP library in favour of manipulating images using the HTML5 canvas element.
 * 0.2.2
     * Cleaned up codebase
 * 0.2.1
