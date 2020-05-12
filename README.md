@@ -59,6 +59,10 @@ Alternatively, navigate to http://instasquare.netlify.com for an hosted version 
 * A BIG THANK YOU goes to Andy Suwandy who wrote [this tutorial](http://bytutorial.com/tutorials/google-api/introduction-to-google-drive-api-using-javascript) on how to connect to the Google Drive API via in browser Javascript. It took me the longest time to find a method that works.
 * HTML5Up for the Prologue Theme which I adapted for the user interface.
 
+## Buy me a coffee (or bubble tea)
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/patrickchong)
+
+
 ## License
 
 This project is licensed under the Apache License 2.0 - see the [LICENSE.md](LICENSE.md) file for details
