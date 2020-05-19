@@ -22,7 +22,7 @@ To run the web app locally
 * Run `python -m http.server 8000` in the folder containing `index.html`
 * Go to `http://localhost:8000/index.html` on any modern web browser
 
-Alternatively, navigate to http://instasquare.netlify.com for an hosted version of the app.
+Alternatively, navigate to https://instasquare.patrickxchong.com for an hosted version of the app.
 
 ## Contributing
 
