@@ -10,16 +10,22 @@
   <meta charset="utf-8" />
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
   <title>InstaSquare</title>
-  <meta name="description" content="" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description"
+    content="A web app to square photos in bulk to upload into Instagram albums." />
+  <meta property="og:image"
+    content="https://www.patrickxchong.com/images/uploads/InstaSquare.png" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <link rel="apple-touch-icon" href="favicon.png" />
   <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="stylesheet" type="text/css" href="css/reset.css" />
   <link rel="stylesheet" type="text/css" href="css/index.css" />
   <link rel="stylesheet" type="text/css" href="css/loader.css" />
   <link rel="stylesheet" type="text/css" href="css/drive-upload.css" />
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
-    integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+  <link rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+    integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+    crossorigin="anonymous" />
 </head>
 
 <body>
@@ -30,7 +36,8 @@
   </div>
   <div id="wrapper">
     <div id="left-column">
-      <input type="file" id="file" name="files[]" onchange="newFiles(this)" multiple />
+      <input type="file" id="file" name="files[]" onchange="newFiles(this)"
+        multiple />
       <div class="top">
         <!-- Logo -->
         <div id="logo">
@@ -53,7 +60,8 @@
         <!-- Nav -->
         <nav id="nav">
           <ul>
-            <li class="active icon" onclick="document.getElementById('file').click(); return false;">
+            <li class="active icon"
+              onclick="document.getElementById('file').click(); return false;">
               <i class="fas fa-th"></i>Upload Images
             </li>
             <div id="download-options">
@@ -69,7 +77,8 @@
               <li class="icon"><i class="fas fa-envelope"></i> Contact</li>
             </a>
             <a href="/privacy" target="blank">
-              <li class="icon"><i class="fa fa-user-secret" aria-hidden="true"></i> Privacy Policy</li>
+              <li class="icon"><i class="fa fa-user-secret"
+                  aria-hidden="true"></i> Privacy Policy</li>
             </a>
           </ul>
         </nav>
@@ -86,7 +95,8 @@
           <li id="custom-folder" class="icon">
             <i class="far fa-folder-open"></i>
             <p>Custom Folder</p>
-            <input type="text" id="txtFolder" class="text-input disabled" disabled />
+            <input type="text" id="txtFolder" class="text-input disabled"
+              disabled />
           </li>
           <button id="btnClose" value="Close" class="button btnClose">
             Cancel
@@ -100,7 +110,8 @@
           <a href="https://www.facebook.com/PatrickChongJinHua" class="icon">
             <i class="fab fa-facebook"></i>
           </a>
-          <a href="https://www.linkedin.com/in/patrickchongjinhua/" class="icon">
+          <a href="https://www.linkedin.com/in/patrickchongjinhua/"
+            class="icon">
             <i class="fab fa-linkedin"></i>
           </a>
           <a href="https://github.com/patch153" class="icon">
@@ -128,8 +139,10 @@
       <div id="contact">
         <p>Created by: Patrick Chong Jin Hua</p>
         <p>
-          If you have any suggestions for improvement, please direct them to
-          pcjh@umich.edu. :)
+          If you have any suggestions for improvement, contact me <a
+            style="text-decoration: underline;"
+            href="https://patrickxchong.com/contact" target="_blank"
+            rel="noopener noreferrer">here</a>. :)
         </p>
       </div>
       <div id="error-message" class="hidden"></div>
@@ -142,9 +155,11 @@
       document.getElementById('download-options').style.display = 'none'
     }
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/mailtoui@1.0.2/dist/mailtoui-min.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/mailtoui@1.0.2/dist/mailtoui-min.js"></script>
   <script src="js/jquery.min.js"></script>
-  <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
+  <script src="https://apis.google.com/js/platform.js?onload=init" async
+    defer></script>
   <script src="js/drive-upload.js"></script>
   <script src="js/app.js"></script>
   <script src="js/jszip.min.js"></script>

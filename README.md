@@ -60,7 +60,7 @@ Alternatively, navigate to https://instasquare.patrickxchong.com for an hosted v
 * HTML5Up for the Prologue Theme which I adapted for the user interface.
 
 ## Buy me a coffee (or bubble tea)
-[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/patrickchong)
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/patrickxchong)
 
 
 ## License
