@@ -24,7 +24,7 @@ function downloadZip() {
 
 function addImgToPage(image, fileName) {
   let squared_file =
-    fileName.split(".")[0] + "_squared." + fileName.split(".")[1];
+    fileName.split(".").slice(0, -1).join(".") + "_squared." + fileName.split(".").at(-1);
 
   let img_wrapper = document.createElement("div");
   img_wrapper.classList.add("img_wrapper");
