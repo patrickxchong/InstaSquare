@@ -69,6 +69,7 @@ h1 {
   width: 300px;
   overflow-y: auto;
   position: fixed;
+  left: 0;
   z-index: 100;
 }
 
